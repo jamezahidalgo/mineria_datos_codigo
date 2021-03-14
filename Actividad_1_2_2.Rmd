@@ -1,0 +1,52 @@
+---
+title: "Medidas de estadística descriptiva"
+output: html_notebook
+---
+
+# Cálculo de las medidas de posición de la acrividad 1.2.2
+## Medidas de posición
+
+### Cálculo de percentiles
+Al trabajar con percentiles es dividir una variable ordenada en 100 partes iguales. En R se usa la función quantile para calcular las medidas de posición
+```{r}
+datos = c(6,7,7,8,8,8,8,9,9,9,9,9,9,9,10,10,10,10,10,11)
+quantile(x=datos, probs=c(0.05, 0.5, 0.8, 1))
+```
+### Cálculo de cuartiles
+Los cuartiles cortan al 25%, 50% y 75%
+
+```{r}
+quantile(x=datos, probs=c(0.25, 0.5, 0.75))
+```
+## Medidas de centralización
+```{r}
+# Mediana
+median(datos)
+# Media
+mean(datos)
+```
+Para calcular la moda se usa un paquete especial de R
+```{r}
+# Ejecutar previamente 
+# install.packages("modeest")
+library(modeest)
+mfv(datos)
+```
+## Medidas de dispersión
+```{r}
+var(datos)
+(sd = sd(datos))
+(max(datos) - min(datos))
+(sd/mean(datos))
+```
+## Construcción de gráfico
+```{r}
+library("ggplot2")
+(table(datos))
+(df <- data.frame(table(datos)))
+#ggplot(data = df, mapping = aes(x = factor(datos), y = Freq)) + geom_bar() 
+
+```
+
+
+
